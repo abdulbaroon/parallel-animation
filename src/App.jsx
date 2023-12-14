@@ -14,16 +14,16 @@ const App = () => {
     console.log(data);
   }
 
+  getData(start, end);
+
   const handleClick = () => {
     console.log("starting");
-    getData(start, end);
   };
 
   const handleChange = (val) => {
     console.log(val);
     setStart(val);
   };
-  
   const handleChange2 = (val) => {
     console.log(val);
     setEnd(val);
@@ -40,11 +40,19 @@ const App = () => {
               className="border-2 border-gray-700 p-1 rounded-lg"
               onChange={(e) => handleChange(e.target.value)}
             >
-              {station.map((ele, i) => (
-                <option key={i} value={ele} style={{ display: i === 0 ? "none" : "block" }}>
-                  {ele}
-                </option>
-              ))}
+              {station.map((ele, i) => {
+                if (i === 0)
+                  return (
+                    <option key={i} value={ele} hidden>
+                      {ele}
+                    </option>
+                  );
+                return (
+                  <option key={i} value={ele}>
+                    {ele}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="to">
@@ -53,11 +61,19 @@ const App = () => {
               onChange={(e) => handleChange2(e.target.value)}
               className="border-2 border-gray-700 p-1 rounded-lg"
             >
-              {station.map((ele, i) => (
-                <option key={i} value={ele} style={{ display: i === 0 ? "none" : "block" }}>
-                  {ele}
-                </option>
-              ))}
+              {station.map((ele, i) => {
+                if (i === 0)
+                  return (
+                    <option key={i} value={ele} hidden>
+                      {ele}
+                    </option>
+                  );
+                return (
+                  <option key={i} value={ele}>
+                    {ele}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>
@@ -70,7 +86,11 @@ const App = () => {
           search for route
         </button>
       </div>
-      <div className="result">{/* Render your data here */}</div>
+      <div className="result">
+        {/* { data.map( (item,index) ) => {
+          return <div></div>
+        } } */}
+      </div>
     </div>
   );
 };
